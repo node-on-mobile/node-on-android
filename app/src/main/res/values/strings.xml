@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">Node on Android</string>
+    <string name="node_process_name">node.service</string>
+</resources>
