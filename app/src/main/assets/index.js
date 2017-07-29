@@ -1,6 +1,18 @@
-console.log("hello world")
-
 var http = require('http')
+var net = require('net')
+
+var android = function () { // TODO: move to internal module
+    var port = Number(process.argv[process.argv.length - 1])
+    var sock = net.connect(port, '127.0.0.1')
+    return {
+        loadUrl: function (u) {
+            sock.write(u)
+        }
+    }
+}()
+
+console.log("hello world")
+console.log('argv', process.argv)
 
 var server = http.createServer(function (req, res) {
     res.setHeader('Content-Type', 'text/html')
@@ -15,4 +27,6 @@ var server = http.createServer(function (req, res) {
     `)
 })
 
-server.listen(10000)
+server.listen(0, function () {
+    android.loadUrl('http://localhost:' + server.address().port)
+})

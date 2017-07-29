@@ -4,9 +4,7 @@ import android.app.Service;
 import android.content.Intent;
 import android.content.res.AssetManager;
 import android.os.IBinder;
-import android.os.Process;
 import android.support.annotation.Nullable;
-
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -16,15 +14,6 @@ public class NodeService extends Service {
     @Override
     public void onCreate() {
         super.onCreate();
-
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-            String jsPath = getCacheDir().getAbsolutePath() + "/index.js";
-            copyAssetFile(getAssets(), "index.js", jsPath);
-            startNode("node", jsPath);
-            }
-        }).start();
     }
 
     @Override
@@ -34,7 +23,18 @@ public class NodeService extends Service {
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
-        return START_STICKY;
+        final String ipcPort = intent.getStringExtra("ipc-port");
+
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                String jsPath = getCacheDir().getAbsolutePath() + "/index.js";
+                copyAssetFile(getAssets(), "index.js", jsPath);
+                startNode("node", jsPath, "" + ipcPort);
+            }
+        }).start();
+
+        return START_REDELIVER_INTENT;
     }
 
     @Nullable
