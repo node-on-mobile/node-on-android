@@ -1,0 +1,24 @@
+{
+  "name": "node-on-android",
+  "version": "0.0.0",
+  "description": "Make Node.JS apps for Android",
+  "main": "index.js",
+  "dependencies": {
+    "minimist": "^1.2.0",
+    "mkdirp": "^0.5.1"
+  },
+  "devDependencies": {},
+  "bin": {
+    "node-on-android": "./bin.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mafintosh/node-on-android.git"
+  },
+  "author": "Mathias Buus (@mafintosh)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/mafintosh/node-on-android/issues"
+  },
+  "homepage": "https://github.com/mafintosh/node-on-android"
+}
