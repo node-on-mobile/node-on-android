@@ -27,7 +27,7 @@ var tmp = path.join(os.tmpdir(), 'node-on-android-' + Date.now())
 var node = path.join(tmp, 'base', 'assets', 'node')
 var app = argv.o
 var keystore = path.join(__dirname, 'whatever.keystore')
-var cwd = process.cwd()
+var cwd = argv._[0] || process.cwd()
 
 mkdirp.sync(tmp)
 
