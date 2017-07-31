@@ -11,6 +11,14 @@ var android = function () { // TODO: move to internal module
     }
 }()
 
+var cowsay = require("cowsay")
+
+console.log(cowsay.say({
+    text : "I'm a moooodule",
+    e : "oO",
+    T : "U "
+}))
+
 console.log("hello world")
 console.log('argv', process.argv)
 

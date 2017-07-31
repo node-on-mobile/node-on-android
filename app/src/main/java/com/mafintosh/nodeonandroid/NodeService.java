@@ -28,8 +28,8 @@ public class NodeService extends Service {
         new Thread(new Runnable() {
             @Override
             public void run() {
-                String jsPath = getCacheDir().getAbsolutePath() + "/index.js";
-                copyAssetFile(getAssets(), "index.js", jsPath);
+                String jsPath = getCacheDir().getAbsolutePath() + "/node";
+                copyAssets(getAssets(), "node", jsPath);
                 startNode("node", jsPath, "" + ipcPort);
             }
         }).start();
@@ -45,25 +45,38 @@ public class NodeService extends Service {
 
     private native void startNode(String... app);
 
-    private static void copyAssetFile(AssetManager am, String src, String dest) {
+    private static void copyAssets (AssetManager am, String src, String dest) {
         try {
-            File destFile = new File(dest);
-            if (!destFile.exists()) destFile.createNewFile();
-
-            InputStream in = am.open(src);
-            FileOutputStream out = new FileOutputStream(dest);
-
-            byte[] buffer = new byte[1024];
-            int length;
-            while ((length = in.read(buffer)) > 0) {
-                out.write(buffer, 0, length);
-            }
-            in.close();
-            out.close();
-
-        } catch (IOException e) {
-            e.printStackTrace();
+            copyAssetFile(am, src, dest);
+        } catch (Exception e) {
+            try {
+                File dir = new File(dest);
+                dir.mkdir();
+            } catch (Exception e1) {}
+            try {
+                String[] files = am.list(src);
+                for (int i = 0; i < files.length; i++) {
+                    copyAssets(am, src + "/" + files[i], dest + "/" + files[i]);
+                }
+            } catch (Exception e2) {}
         }
+    }
+
+    private static void copyAssetFile(AssetManager am, String src, String dest) throws IOException {
+        InputStream in = am.open(src);
+
+        File destFile = new File(dest);
+        if (!destFile.exists()) destFile.createNewFile();
+
+        FileOutputStream out = new FileOutputStream(dest);
+
+        byte[] buffer = new byte[1024];
+        int length;
+        while ((length = in.read(buffer)) > 0) {
+            out.write(buffer, 0, length);
+        }
+        in.close();
+        out.close();
     }
 
     static {
