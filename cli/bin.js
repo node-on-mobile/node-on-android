@@ -21,13 +21,13 @@ if (!argv.b) {
   process.exit(1)
 }
 
+var cwd = argv._[0] || process.cwd()
+var app = path.resolve(cwd, argv.o || 'app.apk')
 var buildTools = argv.b
 var base = path.join(__dirname, 'base.apk')
 var tmp = path.join(os.tmpdir(), 'node-on-android-' + Date.now())
 var node = path.join(tmp, 'base', 'assets', 'node')
-var app = argv.o
 var keystore = path.join(__dirname, 'whatever.keystore')
-var cwd = argv._[0] || process.cwd()
 
 mkdirp.sync(tmp)
 
@@ -42,7 +42,7 @@ run(path.join(buildTools, 'apksigner'), ['sign', '--ks-pass', 'pass:whatever', '
 run('rm', ['-rf', tmp])
 
 console.log('Done! apk file is stored in:')
-console.log(path.resolve(cwd, app))
+console.log(app)
 
 function run (cmd, args) {
   proc.spawnSync(cmd, args, {
