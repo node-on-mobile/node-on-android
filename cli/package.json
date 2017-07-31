@@ -13,12 +13,12 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/mafintosh/node-on-android.git"
+    "url": "https://github.com/node-on-mobile/node-on-android.git"
   },
   "author": "Mathias Buus (@mafintosh)",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/mafintosh/node-on-android/issues"
+    "url": "https://github.com/node-on-mobile/node-on-android/issues"
   },
-  "homepage": "https://github.com/mafintosh/node-on-android"
+  "homepage": "https://github.com/node-on-mobile/node-on-android"
 }
