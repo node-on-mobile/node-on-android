@@ -21,6 +21,13 @@ public class MainActivity extends AppCompatActivity {
     private NodeReceiver receiver;
 
     @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        Intent i = new Intent(MainActivity.this, NodeService.class);
+        stopService(i);
+    }
+
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);

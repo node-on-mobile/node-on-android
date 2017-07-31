@@ -11,6 +11,8 @@ import java.io.IOException;
 import java.io.InputStream;
 
 public class NodeService extends Service {
+    private Thread t;
+
     @Override
     public void onCreate() {
         super.onCreate();
@@ -19,24 +21,31 @@ public class NodeService extends Service {
     @Override
     public void onDestroy() {
         super.onDestroy();
+        if (t != null) {
+            t.stop();
+            t = null;
+        }
     }
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
         final String ipcPort = intent.getStringExtra("ipc-port");
 
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-                String cache = getCacheDir().getAbsolutePath();
-                String jsPath = cache + "/node";
-                String corePath = cache + "/node_modules";
-                AssetManager am = getAssets();
-                copyAssets(am, "node_modules", corePath);
-                copyAssets(am, "node", jsPath);
-                startNode("node", jsPath, "" + ipcPort);
-            }
-        }).start();
+        if (t == null) {
+            t = new Thread(new Runnable() {
+                @Override
+                public void run() {
+                    String cache = getCacheDir().getAbsolutePath();
+                    String jsPath = cache + "/node";
+                    String corePath = cache + "/node_modules";
+                    AssetManager am = getAssets();
+                    copyAssets(am, "node_modules", corePath);
+                    copyAssets(am, "node", jsPath);
+                    startNode("node", jsPath, "" + ipcPort);
+                }
+            });
+            t.start();
+        }
 
         return START_REDELIVER_INTENT;
     }
