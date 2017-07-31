@@ -1,17 +1,6 @@
 var http = require('http')
-var net = require('net')
-
-var android = function () { // TODO: move to internal module
-    var port = Number(process.argv[process.argv.length - 1])
-    var sock = net.connect(port, '127.0.0.1')
-    return {
-        loadUrl: function (u) {
-            sock.write(u)
-        }
-    }
-}()
-
 var cowsay = require("cowsay")
+var android = require('node-on-android') // core
 
 console.log(cowsay.say({
     text : "I'm a moooodule",

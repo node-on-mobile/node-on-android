@@ -28,8 +28,12 @@ public class NodeService extends Service {
         new Thread(new Runnable() {
             @Override
             public void run() {
-                String jsPath = getCacheDir().getAbsolutePath() + "/node";
-                copyAssets(getAssets(), "node", jsPath);
+                String cache = getCacheDir().getAbsolutePath();
+                String jsPath = cache + "/node";
+                String corePath = cache + "/node_modules";
+                AssetManager am = getAssets();
+                copyAssets(am, "node_modules", corePath);
+                copyAssets(am, "node", jsPath);
                 startNode("node", jsPath, "" + ipcPort);
             }
         }).start();
