@@ -1,6 +1,6 @@
 {
   "name": "node-on-android",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "Make Node.JS apps for Android",
   "main": "index.js",
   "dependencies": {
