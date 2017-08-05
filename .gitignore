@@ -8,3 +8,5 @@
 /captures
 .externalNativeBuild
 app/app-release.apk
+example/node_modules/**
+example/build/*.apk

@@ -21,7 +21,7 @@ if (!argv.b) {
   process.exit(1)
 }
 
-var cwd = argv._[0] || process.cwd()
+var cwd = path.resolve(argv._[0] || process.cwd())
 var app = path.resolve(cwd, argv.o || 'app.apk')
 var buildTools = argv.b
 var base = path.join(__dirname, 'base.apk')
