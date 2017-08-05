@@ -9,4 +9,4 @@
 .externalNativeBuild
 app/app-release.apk
 example/node_modules/**
-example/buid/*.apk
+example/build/*.apk
