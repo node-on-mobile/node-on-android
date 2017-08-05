@@ -139,7 +139,7 @@ npm i
 cd ..
 ```
 
-You will also need to change the `-b` argument in build command in `example/package.json` if you don't have symlinks in `/usr/local/bin`.
+You will also need to change the `-b` argument in build command in `example/package.json` if you don't have symlinks to `zipalign` and `apksigner` in `/usr/local/bin`.
 
 ```
 cd example/
@@ -157,7 +157,7 @@ The app will show up in your app list as "Node On Android". You can also launch 
 ```
 adb shell
 am start -n com.mafintosh.nodeonandroid/com.mafintosh.nodeonandroid.MainActivity
-``
+```
 
 ## License
 
