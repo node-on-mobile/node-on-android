@@ -18,7 +18,7 @@ cd cli/
 npm i
 ```
 
-You also need to fetch the Android SDK if you haven't (See "Get just the command line tools" [here](https://developer.android.com/studio/index.html))
+You also need to fetch the Android SDK if you haven't (See "Get just the command line tools" [here](https://developer.android.com/studio/index.html#command-tools))
 and unpack them somewhere.
 
 Then install `apktool` from brew or similar
