@@ -14,7 +14,7 @@ Or get it from git:
 
 ```
 git clone https://github.com/node-on-mobile/node-on-android
-cd cli/
+cd node-on-android/cli/
 npm i
 ```
 
