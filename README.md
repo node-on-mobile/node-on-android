@@ -4,6 +4,8 @@ Make Node.js apps for Android (Currently only supports ARM64)
 
 ## Installing
 
+**WARNING: Install scripts for Windows are not yet compatible.** Please see https://github.com/node-on-mobile/node-on-android/issues/8 for current status.
+
 First install the command line tool from npm
 
 ``` sh
