@@ -398,7 +398,7 @@
             'xcode_settings': {
               'GCC_VERSION': 'com.apple.compilers.llvm.clang.1_0',
               'CLANG_CXX_LANGUAGE_STANDARD': 'gnu++0x',  # -std=gnu++0x
-              'CLANG_CXX_LIBRARY': 'libc++',
+              'CLANG_CXX_LIBRARY': 'libc++node',
             },
           }],
         ],
