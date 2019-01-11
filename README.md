@@ -2,6 +2,8 @@
 
 Make Node.js apps for Android (Currently only supports ARM64)
 
+Node on Android CLI is for Mac/Linux ONLY (produces success message, but doesn't generate .apk file on Windows)
+
 ## Installing
 
 First install the command line tool from npm
